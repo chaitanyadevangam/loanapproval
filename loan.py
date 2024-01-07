@@ -68,6 +68,22 @@ def calculate_normalized_score(user_responses):
 def main():
     st.title('Loan Approval Psychometric Analysis')
 
+    # Set app layout to wide mode
+    st.set_page_config(layout="wide")
+
+    # Display background image
+    st.markdown(
+        """
+        <style>
+            body {
+                background-image: url("https://example.com/your-background-image.jpg");
+                background-size: cover;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     # Display questions and collect user responses
     user_responses = []
     for i, question_data in enumerate(questions):
@@ -75,11 +91,11 @@ def main():
         selected_answer = st.selectbox('Select your answer:', list(question_data['answers'].keys()))
         user_responses.append(selected_answer)
 
-    # Submit button
-    if st.button('Submit'):
-        # Calculate and display user's normalized score
-        normalized_score = calculate_normalized_score(user_responses)
+    # Submit button with animation
+    submit_button = st.button('Submit')
+    if submit_button:
         st.subheader('Psychometric Analysis Result:')
+        normalized_score = calculate_normalized_score(user_responses)
         st.write(f'Your normalized score is: {normalized_score}')
 
     # CSS styling for the app
@@ -90,7 +106,7 @@ def main():
                 background-color: #ecf0f1;
             }
             .stApp {
-                max-width: 800px;
+                max-width: 1200px;
                 margin: 0 auto;
             }
             .stHeader {
@@ -112,6 +128,19 @@ def main():
                 border: 2px solid #3498db;
                 border-radius: 5px;
                 box-sizing: border-box;
+            }
+            .stButton button {
+                background-color: #3498db;
+                color: #fff;
+                padding: 15px 30px;
+                font-size: 1.5em;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .stButton button:hover {
+                background-color: #2980b9;
             }
             .stMarkdown {
                 color: #3498db;
