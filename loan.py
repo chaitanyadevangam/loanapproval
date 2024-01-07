@@ -1,8 +1,4 @@
 import streamlit as st
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 
 # Define a list of financial psychometric analysis questions and their possible answers
 questions = [
@@ -68,39 +64,6 @@ def calculate_normalized_score(user_responses):
 
     return round(normalized_score, 2)
 
-# Function to train and evaluate a loan approval prediction model (replace with your actual model and dataset)
-def train_and_evaluate_model():
-    # Load your dataset (replace 'your_dataset.csv' with your actual dataset)
-    df = pd.read_csv('loan_approval_dataset.csv')
-
-    # Drop columns not needed for training
-    features = ['no_of_dependents', 'income_annum', 'loan_amount', 'loan_term', 'cibil_score',
-                'residential_assets_value', 'commercial_assets_value', 'luxury_assets_value', 'bank_asset_value']
-    target = 'loan_status'
-    df = df[features + [target]]
-
-    # Convert categorical features to numerical using one-hot encoding
-    df = pd.get_dummies(df, columns=['education', 'self_employed'])
-
-    # Extract features and target variable
-    X = df.drop(target, axis=1)
-    y = df[target]
-
-    # Split the dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    # Train a RandomForestClassifier (replace with your actual model)
-    classifier = RandomForestClassifier()
-    classifier.fit(X_train, y_train)
-
-    # Make predictions on the test set
-    y_pred = classifier.predict(X_test)
-
-    # Calculate accuracy
-    accuracy = accuracy_score(y_test, y_pred)
-
-    return accuracy
-
 # Streamlit app
 def main():
     st.title('Loan Approval Psychometric Analysis')
@@ -118,11 +81,6 @@ def main():
         normalized_score = calculate_normalized_score(user_responses)
         st.subheader('Psychometric Analysis Result:')
         st.write(f'Your normalized score is: {normalized_score}')
-
-        # Train and evaluate the loan approval prediction model
-        model_accuracy = train_and_evaluate_model()
-        st.subheader('Loan Approval Prediction Model Accuracy:')
-        st.write(f'The model accuracy is: {model_accuracy:.2%}')
 
     # CSS styling for the app
     st.markdown(
