@@ -88,10 +88,11 @@ def main():
         <style>
             body {
                 background-color: #ecf0f1;
+                margin: 0;
             }
             .stApp {
-                max-width: 800px;
-                margin: 0 auto;
+                max-width: 100%;
+                margin: 0;
             }
             .stHeader {
                 color: #3498db;
@@ -126,4 +127,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
