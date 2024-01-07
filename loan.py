@@ -72,17 +72,7 @@ def main():
     st.set_page_config(layout="wide")
 
     # Display background image
-    st.markdown(
-        """
-        <style>
-            body {
-                background-image: url("https://example.com/your-background-image.jpg");
-                background-size: cover;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    
 
     # Display questions and collect user responses
     user_responses = []
