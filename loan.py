@@ -43,10 +43,12 @@ def main():
         selected_answer = st.selectbox('Select your answer:', question_data['answers'])
         user_responses.append(question_data['answers'].index(selected_answer))
 
-    # Calculate and display correctness percentage
-    correctness_percentage = calculate_percentage(user_responses)
-    st.subheader('Psychometric Analysis Result:')
-    st.write(f'Your correctness percentage is: {correctness_percentage}%')
+    # Submit button
+    if st.button('Submit'):
+        # Calculate and display correctness percentage
+        correctness_percentage = calculate_percentage(user_responses)
+        st.subheader('Psychometric Analysis Result:')
+        st.write(f'Your correctness percentage is: {correctness_percentage}%')
 
     # CSS styling for the app
     st.markdown(
@@ -92,4 +94,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
