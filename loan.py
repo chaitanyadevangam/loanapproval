@@ -17,13 +17,17 @@ questions = [
     },
     {
         'question': 'What is your monthly income range?',
-        'answers': ['Less than $1,000', '$1,000 - $3,000', '$3,000 - $5,000', 'More than $5,000']
+        'answers': ['Less than ₹20,000', '₹20,000 - ₹50,000', '₹50,000 - ₹1,00,000', 'More than ₹1,00,000']
+    },
+    {
+        'question': 'How often do you check your bank statements?',
+        'answers': ['Daily', 'Weekly', 'Monthly', 'Rarely']
     }
 ]
 
 # Function to calculate the correctness percentage based on user responses
 def calculate_percentage(user_responses):
-    correct_answers = [2, 0, 1, 2]  # Adjust the correct answers based on your criteria
+    correct_answers = [2, 0, 1, 2, 1]  # Adjust the correct answers based on your criteria
     num_correct = sum(user_responses[i] == correct_answers[i] for i in range(len(correct_answers)))
     percentage = (num_correct / len(correct_answers)) * 100
     return round(percentage, 2)
@@ -49,36 +53,37 @@ def main():
         """
         <style>
             body {
-                background-color: #f0f0f5;
+                background-color: #ecf0f1;
             }
             .stApp {
-                max-width: 700px;
+                max-width: 800px;
                 margin: 0 auto;
             }
             .stHeader {
-                color: #2c3e50;
-                font-size: 2.5em;
+                color: #3498db;
+                font-size: 3em;
                 text-align: center;
                 margin-bottom: 20px;
             }
             .stSubheader {
-                color: #2c3e50;
-                font-size: 1.5em;
+                color: #3498db;
+                font-size: 1.8em;
                 margin-bottom: 10px;
             }
             .stSelectbox {
                 width: 100%;
-                padding: 10px;
-                font-size: 1em;
-                margin-bottom: 20px;
-                border: 1px solid #3498db;
+                padding: 15px;
+                font-size: 1.2em;
+                margin-bottom: 25px;
+                border: 2px solid #3498db;
                 border-radius: 5px;
                 box-sizing: border-box;
             }
             .stMarkdown {
-                color: #2c3e50;
-                font-size: 1.2em;
+                color: #3498db;
+                font-size: 1.5em;
                 text-align: center;
+                margin-top: 30px;
             }
         </style>
         """,
@@ -87,3 +92,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
