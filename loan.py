@@ -50,7 +50,7 @@ questions = [
 ]
 
 # Function to calculate the user's normalized score based on responses and their weightage
-def calculate_normalized_score(user_responses, credit_utilization_ratio):
+def calculate_normalized_score(user_responses):
     total_score = 0
     max_possible_score = 0
 
@@ -61,9 +61,6 @@ def calculate_normalized_score(user_responses, credit_utilization_ratio):
 
     # Normalize the score to be in the range [0, 100]
     normalized_score = (total_score / max_possible_score) * 100
-
-    # Adjust the score based on the credit utilization ratio
-    normalized_score += (credit_utilization_ratio - 20) * 0.5  # Adjust the weight and factor as needed
 
     return round(normalized_score, 2)
 
@@ -78,21 +75,12 @@ def main():
         selected_answer = st.selectbox('Select your answer:', list(question_data['answers'].keys()))
         user_responses.append(selected_answer)
 
-    # Get user's input for credit utilization
-    credit_utilization_ratio = st.number_input('Enter your credit utilization ratio based on previous loans:', min_value=0.0, max_value=100.0, step=1.0)
-
-    # Centered Submit button for analysis without outer borders
-    col1, col2, col3 = st.beta_columns([1, 2, 1])
-    with col2:
-        if st.button('Submit for Analysis', key='analysis_button', class_='stButton'):
-            # Calculate and display user's normalized score
-            normalized_score = calculate_normalized_score(user_responses, credit_utilization_ratio)
-            st.subheader('Psychometric Analysis Result:')
-            st.write(f'Your normalized score is: {normalized_score}')
-
-    # Get user's input for the exact amount of loan taken and used
-    loan_amount = st.number_input('Enter the exact amount of loan taken from a previous bank:', min_value=0.0)
-    used_amount = st.number_input('Enter the amount you used from the loan:', min_value=0.0, max_value=loan_amount)
+    # Submit button
+    if st.button('Submit'):
+        # Calculate and display user's normalized score
+        normalized_score = calculate_normalized_score(user_responses)
+        st.subheader('Psychometric Analysis Result:')
+        st.write(f'Your normalized score is: {normalized_score}')
 
     # CSS styling for the app
     st.markdown(
@@ -125,24 +113,6 @@ def main():
                 border: 2px solid #3498db;
                 border-radius: 5px;
                 box-sizing: border-box;
-            }
-            .stNumberInput {
-                width: 100%;
-                padding: 15px;
-                font-size: 1.2em;
-                margin-bottom: 25px;
-                border: 2px solid #3498db;
-                border-radius: 5px;
-                box-sizing: border-box;
-            }
-            .stButton.stButton>button {
-                padding: 15px;
-                font-size: 1.2em;
-                margin-bottom: 25px;
-                border-radius: 5px;
-                background-color: #3498db;
-                color: #ffffff;
-                border: none;
             }
             .stMarkdown {
                 color: #3498db;
