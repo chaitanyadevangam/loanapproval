@@ -81,23 +81,27 @@ def main():
     # Get user's input for credit utilization
     credit_utilization_ratio = st.number_input('Enter your credit utilization ratio based on previous loans:', min_value=0.0, max_value=100.0, step=1.0)
 
-    # Submit button for analysis
-    if st.button('Submit for Analysis', key='analysis_button'):
-        # Calculate and display user's normalized score
-        normalized_score = calculate_normalized_score(user_responses, credit_utilization_ratio)
-        st.subheader('Psychometric Analysis Result:')
-        st.write(f'Your normalized score is: {normalized_score}')
+    # Centered Submit button for analysis
+    col1, col2, col3 = st.beta_columns([1, 2, 1])
+    with col2:
+        if st.button('Submit for Analysis', key='analysis_button'):
+            # Calculate and display user's normalized score
+            normalized_score = calculate_normalized_score(user_responses, credit_utilization_ratio)
+            st.subheader('Psychometric Analysis Result:')
+            st.write(f'Your normalized score is: {normalized_score}')
 
     # Get user's input for the exact amount of loan taken and used
     loan_amount = st.number_input('Enter the exact amount of loan taken from a previous bank:', min_value=0.0)
     used_amount = st.number_input('Enter the amount you used from the loan:', min_value=0.0, max_value=loan_amount)
 
-    # Submit button for credit utilization ratio
-    if st.button('Calculate Credit Utilization Ratio', key='utilization_button'):
-        # Calculate and display credit utilization ratio
-        credit_utilization_ratio_calculated = (used_amount / loan_amount) * 100
-        st.subheader('Credit Utilization Ratio:')
-        st.write(f'Your credit utilization ratio is: {credit_utilization_ratio_calculated}%')
+    # Centered Submit button for credit utilization ratio
+    col4, col5, col6 = st.beta_columns([1, 2, 1])
+    with col5:
+        if st.button('Calculate Credit Utilization Ratio', key='utilization_button'):
+            # Calculate and display credit utilization ratio
+            credit_utilization_ratio_calculated = (used_amount / loan_amount) * 100
+            st.subheader('Credit Utilization Ratio:')
+            st.write(f'Your credit utilization ratio is: {credit_utilization_ratio_calculated}%')
 
     # CSS styling for the app
     st.markdown(
@@ -144,7 +148,6 @@ def main():
                 padding: 15px;
                 font-size: 1.2em;
                 margin-bottom: 25px;
-                border: 2px solid #3498db;
                 border-radius: 5px;
                 box-sizing: border-box;
             }
