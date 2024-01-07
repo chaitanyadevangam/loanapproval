@@ -83,9 +83,7 @@ def main():
         st.write(f'Your normalized score is: {normalized_score}')
 
         # Check if the user's score is above 65%
-        if normalized_score > 65:
-            # Display video from your PC
-            st.video('7DVr8cGLBbx5x854re.mp4')
+       
 
     # CSS styling for the app
     st.markdown(
