@@ -71,7 +71,7 @@ def calculate_normalized_score(user_responses):
 # Function to train and evaluate a loan approval prediction model (replace with your actual model and dataset)
 def train_and_evaluate_model():
     # Load your dataset (replace 'your_dataset.csv' with your actual dataset)
-    df = pd.read_csv('loan_approval_dataset.CSV)
+    df = pd.read_csv('loan_approval_dataset.csv)
 
     # Extract features and target variable
     X = df[['Psychometric_Score']]
