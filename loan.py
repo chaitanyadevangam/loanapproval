@@ -57,7 +57,7 @@ def calculate_normalized_score(user_responses, credit_utilization_ratio):
     for i, response in enumerate(user_responses):
         question_data = questions[i]
         total_score += question_data['answers'][response]
-        max_possible_score += max(question_data['answers'].values()
+        max_possible_score += max(question_data['answers'].values())
 
     # Normalize the score to be in the range [0, 100]
     normalized_score = (total_score / max_possible_score) * 100
@@ -78,8 +78,8 @@ def main():
         selected_answer = st.selectbox('Select your answer:', list(question_data['answers'].keys()))
         user_responses.append(selected_answer)
 
-    # Get user's input for credit utilization ratio
-    credit_utilization_ratio = st.slider('Input your credit utilization ratio:', 0, 100, 20)
+    # Get user's input for credit utilization
+    credit_utilization_ratio = st.number_input('Enter your credit utilization ratio based on previous loans:', min_value=0.0, max_value=100.0, step=1.0)
 
     # Submit button
     if st.button('Submit'):
@@ -125,9 +125,14 @@ def main():
                 border-radius: 5px;
                 box-sizing: border-box;
             }
-            .stSlider {
+            .stNumberInput {
                 width: 100%;
+                padding: 15px;
+                font-size: 1.2em;
                 margin-bottom: 25px;
+                border: 2px solid #3498db;
+                border-radius: 5px;
+                box-sizing: border-box;
             }
             .stMarkdown {
                 color: #3498db;
