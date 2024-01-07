@@ -50,17 +50,20 @@ questions = [
 ]
 
 # Function to calculate the user's normalized score based on responses and their weightage
-def calculate_normalized_score(user_responses):
+def calculate_normalized_score(user_responses, credit_utilization_ratio):
     total_score = 0
     max_possible_score = 0
 
     for i, response in enumerate(user_responses):
         question_data = questions[i]
         total_score += question_data['answers'][response]
-        max_possible_score += max(question_data['answers'].values())
+        max_possible_score += max(question_data['answers'].values()
 
     # Normalize the score to be in the range [0, 100]
     normalized_score = (total_score / max_possible_score) * 100
+
+    # Adjust the score based on the credit utilization ratio
+    normalized_score += (credit_utilization_ratio - 20) * 0.5  # Adjust the weight and factor as needed
 
     return round(normalized_score, 2)
 
@@ -75,15 +78,20 @@ def main():
         selected_answer = st.selectbox('Select your answer:', list(question_data['answers'].keys()))
         user_responses.append(selected_answer)
 
+    # Get user's input for credit utilization ratio
+    credit_utilization_ratio = st.slider('Input your credit utilization ratio:', 0, 100, 20)
+
     # Submit button
     if st.button('Submit'):
         # Calculate and display user's normalized score
-        normalized_score = calculate_normalized_score(user_responses)
+        normalized_score = calculate_normalized_score(user_responses, credit_utilization_ratio)
         st.subheader('Psychometric Analysis Result:')
         st.write(f'Your normalized score is: {normalized_score}')
 
         # Check if the user's score is above 65%
-       
+        if normalized_score > 65:
+            # Display video from your PC
+            st.video('path/to/your/video.mp4')
 
     # CSS styling for the app
     st.markdown(
@@ -116,6 +124,10 @@ def main():
                 border: 2px solid #3498db;
                 border-radius: 5px;
                 box-sizing: border-box;
+            }
+            .stSlider {
+                width: 100%;
+                margin-bottom: 25px;
             }
             .stMarkdown {
                 color: #3498db;
