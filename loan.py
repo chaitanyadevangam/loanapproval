@@ -3,39 +3,39 @@ import streamlit as st
 # Define a list of financial psychometric analysis questions and their possible answers
 questions = [
     {
-        'question': 'How do you handle unexpected financial emergencies?',
+        'question': 'How would you describe your approach to budgeting?',
         'answers': {
-            'Save in advance': 20,
-            'Borrow from friends/family': 10,
-            'Take a loan': 30,
-            'Use credit cards': 15
+            'Detailed budgeting and tracking expenses': 30,
+            'Rough estimation of monthly spending': 20,
+            'Occasional budgeting, mostly impulsive spending': 15,
+            'No specific budgeting': 10
         }
     },
     {
-        'question': 'What is your current employment status?',
+         'question': 'In case of a financial windfall (an unexpected large sum of money), what would you do?',
         'answers': {
-            'Full-time employed': 30,
-            'Part-time employed': 15,
-            'Unemployed': 10,
-            'Self-employed': 25
+            'Invest a significant portion': 30,
+            'Save for future goals': 25,
+            'Pay off debts or loans': 20,
+            'Splurge on luxury items': 10
         }
     },
     {
-        'question': 'How would you rate your credit score?',
+        'question': 'How proactive are you in seeking financial advice?',
         'answers': {
-            'Excellent': 30,
-            'Good': 25,
-            'Fair': 15,
-            'Poor': 10
+            'Regularly consult with financial advisors': 30,
+            'Seek advice occasionally': 25,
+            'Rarely seek financial advice': 15,
+            'Rely on personal decisions': 10
         }
     },
     {
-        'question': 'What is your monthly income range?',
+       'question': 'What percentage of your income do you allocate for savings?',
         'answers': {
-            'Less than ₹20,000': 10,
-            '₹20,000 - ₹50,000': 20,
-            '₹50,000 - ₹1,00,000': 30,
-            'More than ₹1,00,000': 25
+            'More than 20%': 30,
+            '10% - 20%': 25,
+            '5% - 10%': 15,
+            'Less than 5%': 10
         }
     },
     {
@@ -46,7 +46,26 @@ questions = [
             'Monthly': 15,
             'Rarely': 10
         }
+    },
+     {
+        'question': 'What is your attitude towards long-term financial planning?',
+        'answers': {
+            'Actively plan for the future': 30,
+            'Consider future but not actively planning': 25,
+            'Live in the present, minimal future planning': 15,
+            'No specific attitude towards long-term planning': 10
+        }
+    },
+    {
+         'question': 'How often do you review and update your financial goals?',
+        'answers': {
+            'Regularly reassess and adjust goals': 30,
+            'Occasionally update goals': 25,
+            'Rarely revisit financial goals': 15,
+            'No specific routine for goal review': 10
     }
+    }
+    
 ]
 
 # Function to calculate the user's normalized score based on responses and their weightage
